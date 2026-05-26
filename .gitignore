@@ -1,4 +1,98 @@
 ```
+# Logs and temp files
+*.log
+
+# Dependencies
+node_modules/
+
+# Editors
+.vscode/
+
 # Build artifacts
-sports-registration/app
+build/
+dist/
+target/
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
+
+# Go
+*.o
+*.a
+*.so
+*.exe
+*.dll
+*.dylib
+*.test
+*.prof
+vendor/
+
+# Compiled and binary files
+*.class
+*.jar
+*.war
+*.ear
+*.tar.gz
+*.tgz
+*.tar.bz2
+*.tar.xz
+*.zip
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+*.swp
+*.swo
+tmp/
+temp/
 ```

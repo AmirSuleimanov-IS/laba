@@ -35,6 +35,7 @@ func (h *Handler) loadTemplates() {
 		"templates/athletes.html",
 		"templates/events.html",
 		"templates/home.html",
+		"templates/index.html",
 		"templates/team-application.html",
 		"templates/athlete-detail.html",
 		"templates/event-detail.html",
@@ -151,9 +152,8 @@ func (h *Handler) TeamApplicationHandler(w http.ResponseWriter, r *http.Request)
 func (h *Handler) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	data := map[string]interface{}{
 		"CartCount": h.repo.TeamApplication.TotalMembers,
-		"PageTitle": "Главная",
-		"VideoKey":  "video.mp4",
+		"PageTitle": "Kinetic - Главная",
 	}
 
-	h.tmpl.ExecuteTemplate(w, "home", data)
+	h.tmpl.ExecuteTemplate(w, "index", data)
 }
