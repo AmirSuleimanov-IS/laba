@@ -1,0 +1,25 @@
+{{define "header"}}
+<header class="header">
+    <div class="header-container">
+        <a href="/" class="logo">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text">KINETIC</span>
+        </a>
+        
+        <nav class="header-nav">
+            <a href="/athletes" class="nav-link" title="Атлеты">
+                <span class="icon">home</span>
+            </a>
+            <a href="/team-application" class="nav-link cart-link" title="Командная заявка">
+                <span class="icon">group</span>
+                {{if .CartCount}}
+                <span class="cart-badge">{{.CartCount}}</span>
+                {{end}}
+            </a>
+            <a href="#" class="nav-link" title="Уведомления">
+                <span class="icon">notifications</span>
+            </a>
+        </nav>
+    </div>
+</header>
+{{end}}
