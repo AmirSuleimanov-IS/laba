@@ -1,0 +1,99 @@
+{{define "application"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Текущая заявка #{{.Application.ID}}</h1>
+            <p class="subtitle">{{.Application.TeamName}}</p>
+        </div>
+        
+        {{if eq .Application.Status "draft"}}
+        <div class="application-container">
+            <div class="application-header">
+                <div>
+                    <h2>Статус: <span class="status-badge draft">Черновик</span></h2>
+                    <p>Создана: {{.Application.CreatedAt}}</p>
+                </div>
+            </div>
+            
+            {{if .Application.Services}}
+            <div class="services-list">
+                <h3>Услуги в заявке ({{.ServiceCount}})</h3>
+                {{range .Application.Services}}
+                <div class="service-item">
+                    <div class="service-info">
+                        <div class="service-row">
+                            <div class="service-field">
+                                <span class="field-label">Услуга</span>
+                                <span class="field-value">{{.Service.Name}}</span>
+                            </div>
+                            <div class="service-field">
+                                <span class="field-label">Тип</span>
+                                <span class="field-value">{{.Service.ServiceType}}</span>
+                            </div>
+                            <div class="service-field">
+                                <span class="field-label">Количество</span>
+                                <span class="field-value">{{.Quantity}}</span>
+                            </div>
+                            <div class="service-field">
+                                <span class="field-label">Цена</span>
+                                <span class="field-value">{{printf "%.2f" .Service.Price}} ₽</span>
+                            </div>
+                            <div class="service-field">
+                                <span class="field-label">Сумма</span>
+                                <span class="field-value">{{printf "%.2f" (mul .Service.Price .Quantity)}} ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{if .IsPrimary}}
+                    <span class="badge-primary">Основная</span>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+            
+            <div class="application-summary">
+                <div class="summary-item">
+                    <span>Общее количество услуг:</span>
+                    <strong>{{.ServiceCount}}</strong>
+                </div>
+                <div class="summary-actions">
+                    <form action="/application/delete" method="POST" style="display: inline;">
+                        <input type="hidden" name="application_id" value="{{.Application.ID}}">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить заявку?')">Удалить заявку</button>
+                    </form>
+                    <a href="/services" class="btn btn-primary">Добавить еще услуги</a>
+                    <button class="btn btn-success" disabled title="Функция в разработке">Завершить заявку</button>
+                </div>
+            </div>
+            {{else}}
+            <div class="empty-state">
+                <p>В вашей заявке пока нет услуг.</p>
+                <a href="/services" class="btn btn-primary">Перейти к выбору услуг</a>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div class="alert alert-error">
+            Заявка не найдена или уже обработана (статус: {{.Application.Status}})
+        </div>
+        {{end}}
+        
+        <div class="back-link">
+            <a href="/services">← Вернуться к услугам</a>
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}
