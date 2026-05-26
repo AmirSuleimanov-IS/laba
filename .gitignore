@@ -3,14 +3,19 @@
 *.o
 *.obj
 *.out
-main
+build/
+dist/
 
 # Dependencies
-go.sum
+vendor/
+node_modules/
+*.mod
+*.sum
 
 # Logs and temp files
 *.log
-server.log
+*.tmp
+*.swp
 
 # Editors
 .vscode/

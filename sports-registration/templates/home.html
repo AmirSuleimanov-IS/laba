@@ -1,0 +1,36 @@
+{{define "home"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content home-page">
+        <div class="video-background">
+            <video autoplay muted loop playsinline>
+                <source src="http://localhost:9000/sports/{{.VideoKey}}" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>KINETIC</h1>
+            <p class="hero-subtitle">Платформа управления спортивными командами</p>
+            <div class="hero-buttons">
+                <a href="/athletes" class="btn btn-hero">Атлеты</a>
+                <a href="/events" class="btn btn-hero btn-secondary">События</a>
+                <a href="/team-application" class="btn btn-hero btn-outline">Командная заявка</a>
+            </div>
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}

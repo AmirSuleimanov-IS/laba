@@ -131,5 +131,11 @@ func (h *Handler) TeamApplicationHandler(w http.ResponseWriter, r *http.Request)
 }
 
 func (h *Handler) HomeHandler(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "/athletes", http.StatusSeeOther)
+	data := map[string]interface{}{
+		"CartCount": h.repo.TeamApplication.TotalMembers,
+		"PageTitle": "Главная",
+		"VideoKey":  "video.mp4",
+	}
+
+	h.tmpl.ExecuteTemplate(w, "home", data)
 }
