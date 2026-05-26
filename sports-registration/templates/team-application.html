@@ -1,0 +1,67 @@
+{{define "team-application"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Состав командной заявки</h1>
+            <p class="subtitle">Проверьте список участников и их роли</p>
+        </div>
+        
+        <div class="application-container">
+            <div class="application-header">
+                <h2>{{.Application.TeamName}}</h2>
+                <p>Заявка #{{.Application.ID}}</p>
+            </div>
+            
+            <div class="members-list">
+                {{range .Application.Members}}
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="http://localhost:9000/sports/{{.ImageKey}}" alt="{{.Name}}">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-row">
+                            <div class="member-field">
+                                <span class="field-label">Имя</span>
+                                <span class="field-value">{{.Name}}</span>
+                            </div>
+                            <div class="member-field">
+                                <span class="field-label">Роль</span>
+                                <span class="field-value">{{.Role}}</span>
+                            </div>
+                            <div class="member-field">
+                                <span class="field-label">Событие</span>
+                                <span class="field-value">{{.EventType}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-actions">
+                        <button class="btn-icon" title="Удалить">✕</button>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+            
+            <div class="application-summary">
+                <div class="summary-item">
+                    <span>Общее количество участников:</span>
+                    <strong>{{.Application.TotalMembers}} / {{.Application.MaxMembers}}</strong>
+                </div>
+                <button class="btn btn-primary btn-large">Отправить заявку команды</button>
+            </div>
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}

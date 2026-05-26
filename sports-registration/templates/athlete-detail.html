@@ -1,0 +1,61 @@
+{{define "athlete-detail"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content">
+        <div class="athlete-detail-container">
+            <a href="/athletes" class="back-link">← Назад к списку</a>
+            
+            <div class="athlete-profile">
+                <div class="profile-image">
+                    <img src="http://localhost:9000/sports/{{.Athlete.ImageKey}}" alt="{{.Athlete.Name}}">
+                    {{if eq .Athlete.Status "Свободен для команд"}}
+                    <span class="status-badge available">Свободен для команд</span>
+                    {{else}}
+                    <span class="status-badge taken">{{.Athlete.Status}}</span>
+                    {{end}}
+                </div>
+                
+                <div class="profile-info">
+                    <h1>{{.Athlete.Name}}</h1>
+                    <p class="category">{{.Athlete.Category}} • {{.Athlete.Age}} лет • {{.Athlete.Country}}</p>
+                    <p class="location">📍 {{.Athlete.Location}}</p>
+                    
+                    <div class="stats-large">
+                        <div class="stat-item">
+                            <span class="stat-value">{{.Athlete.Races}}</span>
+                            <span class="stat-label">Забеги</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">{{.Athlete.Wins}}</span>
+                            <span class="stat-label">Победы</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">#{{.Athlete.Rating}}</span>
+                            <span class="stat-label">Рейтинг</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bio-section">
+                        <h3>Биография</h3>
+                        <p>{{.Athlete.Bio}}</p>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-large">Добавить в команду</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}

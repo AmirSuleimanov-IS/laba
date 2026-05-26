@@ -1,0 +1,58 @@
+{{define "athletes"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Атлеты</h1>
+            <form class="search-form" action="/athletes" method="GET">
+                <input type="text" name="search" placeholder="Поиск атлетов..." value="{{.SearchQuery}}">
+                <button type="submit" class="btn-search">🔍</button>
+            </form>
+        </div>
+        
+        <div class="cards-grid">
+            {{range .Athletes}}
+            <div class="athlete-card">
+                <div class="card-image">
+                    <img src="http://localhost:9000/sports/{{.ImageKey}}" alt="{{.Name}}">
+                    {{if eq .Status "Свободен для команд"}}
+                    <span class="status-badge available">Свободен</span>
+                    {{end}}
+                </div>
+                <div class="card-content">
+                    <h3>{{.Name}}</h3>
+                    <p class="category">{{.Category}} • {{.Age}} лет • {{.Country}}</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-value">{{.Races}}</span>
+                            <span class="stat-label">Забеги</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">{{.Wins}}</span>
+                            <span class="stat-label">Победы</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">#{{.Rating}}</span>
+                            <span class="stat-label">Рейтинг</span>
+                        </div>
+                    </div>
+                    <a href="/athlete?id={{.ID}}" class="btn btn-primary">Профиль</a>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}

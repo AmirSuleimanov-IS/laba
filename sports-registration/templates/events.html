@@ -1,0 +1,44 @@
+{{define "events"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Спортивные события</h1>
+            <form class="search-form" action="/events" method="GET">
+                <input type="text" name="search" placeholder="Поиск событий..." value="{{.SearchQuery}}">
+                <button type="submit" class="btn-search">🔍</button>
+            </form>
+        </div>
+        
+        <div class="cards-grid">
+            {{range .Events}}
+            <div class="event-card">
+                <div class="card-image">
+                    <img src="http://localhost:9000/sports/{{.ImageKey}}" alt="{{.Name}}">
+                </div>
+                <div class="card-content">
+                    <span class="event-type">{{.Type}}</span>
+                    <h3>{{.Name}}</h3>
+                    <p class="event-date">📅 {{.Date}}</p>
+                    <p class="event-location">📍 {{.Location}}</p>
+                    <p class="event-price">{{printf "%.2f" .Price}} ₽</p>
+                    <a href="/event?id={{.ID}}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}

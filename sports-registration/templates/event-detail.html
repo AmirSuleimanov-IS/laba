@@ -1,0 +1,57 @@
+{{define "event-detail"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content">
+        <div class="event-detail-container">
+            <a href="/events" class="back-link">← Назад к списку</a>
+            
+            <div class="event-profile">
+                <div class="event-header-image">
+                    <img src="http://localhost:9000/sports/{{.Event.ImageKey}}" alt="{{.Event.Name}}">
+                    <div class="event-overlay">
+                        <span class="event-type-large">{{.Event.Type}}</span>
+                    </div>
+                </div>
+                
+                <div class="event-info">
+                    <h1>{{.Event.Name}}</h1>
+                    
+                    <div class="event-meta">
+                        <div class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            <span>{{.Event.Date}}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon">📍</span>
+                            <span>{{.Event.Location}}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon">💰</span>
+                            <span>{{printf "%.2f" .Event.Price}} ₽</span>
+                        </div>
+                    </div>
+                    
+                    <div class="event-description">
+                        <h3>О событии</h3>
+                        <p>{{.Event.Description}}</p>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-large">Зарегистрироваться</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}
