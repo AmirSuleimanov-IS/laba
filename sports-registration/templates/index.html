@@ -1,0 +1,44 @@
+{{define "index"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="hero-body">
+    {{template "header" .}}
+    
+    <main class="hero-section">
+        <!-- Видео фон -->
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="http://localhost:9000/sports/video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+        
+        <!-- Затемнение -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Контент по центру -->
+        <div class="hero-content">
+            <h1 class="hero-title">KINETIC</h1>
+            <p class="hero-subtitle">Платформа управления спортивными командами</p>
+            
+            <div class="hero-buttons">
+                <a href="/athletes" class="btn btn-hero">Атлеты</a>
+                <a href="/events" class="btn btn-hero btn-outline">События</a>
+                <a href="/team-application" class="btn btn-hero btn-outline">
+                    Командная заявка
+                    {{if .CartCount}}
+                    <span class="badge">{{.CartCount}}</span>
+                    {{end}}
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}
