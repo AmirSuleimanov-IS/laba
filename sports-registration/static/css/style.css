@@ -598,16 +598,29 @@ body {
     background-color: #000;
 }
 
-.hero-section {
+.hero-body .main-content {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.home-page {
     position: relative;
     min-height: calc(100vh - 80px);
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.hero-video {
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.video-background video {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -617,10 +630,9 @@ body {
     height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    z-index: 0;
 }
 
-.hero-overlay {
+.video-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -640,6 +652,7 @@ body {
     text-align: center;
     color: white;
     padding: 2rem;
+    min-height: calc(100vh - 80px);
 }
 
 .hero-title {
@@ -666,6 +679,18 @@ body {
     padding: 1rem 2rem;
     font-size: 1.1rem;
     min-width: 150px;
+    transition: all 0.3s ease;
+}
+
+.btn-hero.btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-hero.btn-outline:hover {
+    background: white;
+    color: var(--primary-color);
 }
 
 .badge {
