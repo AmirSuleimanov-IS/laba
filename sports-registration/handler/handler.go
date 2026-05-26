@@ -22,7 +22,25 @@ func NewHandler(repo *repository.Repository) *Handler {
 func (h *Handler) loadTemplates() {
 	funcMap := template.FuncMap{}
 	
-	h.tmpl = template.Must(template.New("").Funcs(funcMap).ParseGlob("templates/**/*.html"))
+	tmpl := template.New("").Funcs(funcMap)
+	
+	// Загружаем layout
+	tmpl = template.Must(tmpl.ParseFiles(
+		"templates/layout/header.html",
+		"templates/layout/footer.html",
+	))
+	
+	// Загружаем страницы
+	tmpl = template.Must(tmpl.ParseFiles(
+		"templates/athletes.html",
+		"templates/events.html",
+		"templates/home.html",
+		"templates/team-application.html",
+		"templates/athlete-detail.html",
+		"templates/event-detail.html",
+	))
+	
+	h.tmpl = tmpl
 }
 
 func (h *Handler) AthletesHandler(w http.ResponseWriter, r *http.Request) {
