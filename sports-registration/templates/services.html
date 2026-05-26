@@ -1,0 +1,73 @@
+{{define "services"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PageTitle}} - Kinetic</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {{template "header" .}}
+    
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Спортивные услуги</h1>
+            <form class="search-form" action="/services" method="GET">
+                <input type="text" name="search" placeholder="Поиск услуг..." value="{{.SearchQuery}}">
+                <button type="submit" class="btn-search">🔍</button>
+            </form>
+        </div>
+        
+        {{if not .HasDraft}}
+        <div class="alert alert-info">
+            ⚠️ У вас нет активной заявки. При добавлении первой услуги будет создан черновик заявки.
+        </div>
+        {{end}}
+        
+        <div class="cards-grid">
+            {{range .Services}}
+            <div class="service-card">
+                <div class="card-image">
+                    {{if .ImageURL}}
+                    <img src="{{.ImageURL}}" alt="{{.Name}}">
+                    {{else}}
+                    <div class="no-image">Нет изображения</div>
+                    {{end}}
+                </div>
+                <div class="card-content">
+                    <span class="service-type">{{.ServiceType}}</span>
+                    <h3>{{.Name}}</h3>
+                    <p class="service-description">{{.Description}}</p>
+                    {{if .EventDate}}
+                    <p class="service-date">📅 {{.EventDate}}</p>
+                    {{end}}
+                    <p class="service-location">📍 {{.Location}}</p>
+                    <p class="service-price">{{printf "%.2f" .Price}} ₽</p>
+                    
+                    {{if $.HasDraft}}
+                    <form action="/application/add" method="POST">
+                        <input type="hidden" name="service_id" value="{{.ID}}">
+                        <button type="submit" class="btn btn-primary">Добавить в заявку</button>
+                    </form>
+                    {{else}}
+                    <button class="btn btn-disabled" disabled title="Сначала создайте заявку">Добавить в заявку</button>
+                    {{end}}
+                </div>
+            </div>
+            {{end}}
+        </div>
+        
+        {{if .HasDraft}}
+        <div class="application-preview">
+            <h2>Ваша текущая заявка</h2>
+            <p>Услуг в заявке: <strong>{{.ServiceCount}}</strong></p>
+            <a href="/application" class="btn btn-primary">Перейти к заявке →</a>
+        </div>
+        {{end}}
+    </main>
+    
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}

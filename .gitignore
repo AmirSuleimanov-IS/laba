@@ -1,7 +1,26 @@
 ```
-# Logs
-*.log
+# Compiled and build artifacts
+*.o
+*.obj
+*.out
 
-# Executable
-kinetic_app
+# Dependencies
+go.sum
+go.mod
+
+# Logs and temp files
+*.log
+server.log
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Build artifacts
+main
 ```

@@ -1,3 +1,6 @@
-2026/05/26 12:51:09 🚀 Запуск приложения Kinetic Sports Registration...
-2026/05/26 12:51:09 🏃 Сервер запущен на http://localhost:8080
-2026/05/26 12:51:09 listen tcp :8080: bind: address already in use
+2026/05/26 13:14:18 🚀 Запуск приложения Kinetic Sports Registration...
+2026/05/26 13:14:18 ⚠️  База данных недоступна: error connecting to database: dial tcp [::1]:5432: connect: connection refused
+2026/05/26 13:14:18 📋 Режим работы: только статические данные (без БД)
+2026/05/26 13:14:18 💡 Для подключения БД запустите PostgreSQL и установите переменные окружения
+2026/05/26 13:14:18 🏃 Сервер запущен на http://localhost:8080
+2026/05/26 13:14:18 listen tcp :8080: bind: address already in use
